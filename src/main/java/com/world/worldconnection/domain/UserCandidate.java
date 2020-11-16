@@ -20,8 +20,8 @@ public class UserCandidate extends User {
     public UserCandidate() {
     }
 
-    public UserCandidate(Integer id, Integer userType, String fullName, String dateBirth, String numberTelephone, ArrayList<String> cellPhone, String email, ArrayList<String> languageSpoken, String profession, DataSchool dataSchool, Address address, long rg, double incomeFamily, ResidenceData residenceData, long numberDocument, Integer cpfORcnpj) {
-        super(id, userType, fullName, dateBirth, numberTelephone, cellPhone, email, languageSpoken, profession, dataSchool, address, residenceData);
+    public UserCandidate(Integer id, Integer userType, String fullName, String dateBirth, String numberTelephone, String email, String profession, DataSchool dataSchool, Address address, long rg, double incomeFamily, ResidenceData residenceData, long numberDocument, Integer cpfORcnpj, String cellPhone) {
+        super(id, userType, fullName, dateBirth, numberTelephone, email, profession, dataSchool, address, residenceData, cellPhone);
         this.rg = rg;
         this.incomeFamily = incomeFamily;
         this.numberDocument = numberDocument;

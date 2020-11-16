@@ -1,5 +1,7 @@
 package com.world.worldconnection.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,10 +18,13 @@ public class DataSchool implements Serializable {
     private String educationalTeaching;
     private String conclusionYear;
 
+
+    @JsonIgnore
     @OneToOne(mappedBy = "dataSchool", cascade = CascadeType.ALL)
     private User user;
 
     public DataSchool(){}
+
     public DataSchool(Integer id, String gradeSchool, String course, String educationalTeaching, String conclusionYear) {
         this.id = id;
         this.gradeSchool = gradeSchool;

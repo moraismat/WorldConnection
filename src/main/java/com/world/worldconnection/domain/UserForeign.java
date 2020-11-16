@@ -12,8 +12,8 @@ public class UserForeign extends User{
 
     public UserForeign(){}
 
-    public UserForeign(Integer id, Integer userType, String fullName, String dateBirth, String numberTelephone, ArrayList<String> cellPhone, String email, ArrayList<String> languageSpoken, String profession, DataSchool dataSchool, Address address, long numberDocument, String originCountry) {
-        super(id, userType, fullName, dateBirth, numberTelephone, cellPhone, email, languageSpoken, profession, dataSchool, address, null);
+    public UserForeign(Integer id, Integer userType, String fullName, String dateBirth, String numberTelephone, String email, String profession, DataSchool dataSchool, Address address, long numberDocument, String originCountry, String cellPhone) {
+        super(id, userType, fullName, dateBirth, numberTelephone, email,  profession, dataSchool, address, null, cellPhone);
         this.numberDocument = numberDocument;
         this.originCountry = originCountry;
     }

@@ -1,5 +1,7 @@
 package com.world.worldconnection.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -22,6 +24,7 @@ public class ResidenceData implements Serializable {
     public Boolean vehicleAvailable;
     public String vehicle;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "residenceData", cascade = CascadeType.ALL)
     private User user;
 

@@ -1,8 +1,12 @@
 package com.world.worldconnection.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.world.worldconnection.domain.enums.LanguageSpoken;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User implements Serializable {
@@ -17,38 +21,45 @@ public class User implements Serializable {
     private String fullName;
     private String dateBirth;
     private String numberTelephone;
-    private ArrayList<String> cellPhone;
+    private String cellPhone;
     private String email;
-    private ArrayList<String> languageSpoken;
+
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "LanguageSpoken", joinColumns = @JoinColumn(name = "id"))
+    private List<String> languageSpoken = new ArrayList<>();
+
     private String profession;
 
     @OneToOne
+    @JsonManagedReference
     @JoinColumn(name = "dataSchool_id")
     private DataSchool dataSchool;
 
     @OneToOne
+    @JsonManagedReference
     @JoinColumn(name = "address_id")
     private Address address;
 
     @OneToOne
+    @JsonManagedReference
     @JoinColumn(name = "residenceData_id")
     public  ResidenceData residenceData;
 
     public User() {}
 
-    public User(Integer id, Integer userType, String fullName, String dateBirth, String numberTelephone, ArrayList<String> cellPhone, String email, ArrayList<String> languageSpoken, String profession, DataSchool dataSchool, Address address, ResidenceData residenceData) {
+    public User(Integer id, Integer userType, String fullName, String dateBirth, String numberTelephone, String email, String profession, DataSchool dataSchool, Address address, ResidenceData residenceData, String cellPhone) {
         this.id = id;
         this.userType = userType;
         this.fullName = fullName;
         this.dateBirth = dateBirth;
         this.numberTelephone = numberTelephone;
-        this.cellPhone = cellPhone;
         this.email = email;
-        this.languageSpoken = languageSpoken;
         this.profession = profession;
         this.dataSchool = dataSchool;
         this.address = address;
         this.residenceData = residenceData;
+        this.cellPhone =cellPhone;
     }
 
     public Integer getId() {
@@ -91,11 +102,11 @@ public class User implements Serializable {
         this.numberTelephone = numberTelephone;
     }
 
-    public ArrayList<String> getCellPhone() {
+    public String getCellPhone() {
         return cellPhone;
     }
 
-    public void setCellPhone(ArrayList<String> cellPhone) {
+    public void setCellPhone(String cellPhone) {
         this.cellPhone = cellPhone;
     }
 
@@ -107,13 +118,13 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public ArrayList<String> getLanguageSpoken() {
+    /*public List<LanguageSpoken> getLanguageSpoken() {
         return languageSpoken;
     }
 
-    public void setLanguageSpoken(ArrayList<String> languageSpoken) {
+    public void setLanguageSpoken(List<LanguageSpoken> languageSpoken) {
         this.languageSpoken = languageSpoken;
-    }
+    }*/
 
     public String getProfession() {
         return profession;
@@ -145,5 +156,13 @@ public class User implements Serializable {
 
     public void setResidenceData(ResidenceData residenceData) {
         this.residenceData = residenceData;
+    }
+
+    public List<String> getLanguageSpoken() {
+        return languageSpoken;
+    }
+
+    public void setLanguageSpoken(List<String> languageSpoken) {
+        this.languageSpoken = languageSpoken;
     }
 }
